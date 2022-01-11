@@ -140,7 +140,7 @@ let square = () => result.value = Math.pow(result.value , 2);
 
 /* logarithmic functions*/
 let log = () => result.value = Math.LOG10E
-let ln = () => result.value = Math.log;
+let ln = () => result.value = Math.log(result.value);
 let powx = () => result.value = Math.pow(10 , result.value);
 let exp = () => result.value = Math.exp(result.value);
 

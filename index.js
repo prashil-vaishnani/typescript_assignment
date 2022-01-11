@@ -126,7 +126,7 @@ if (typeof document !== 'undefined') { // will run in client's browser only
     var square = function () { return result_1.value = Math.pow(result_1.value, 2); };
     /* logarithmic functions*/
     var log = function () { return result_1.value = Math.LOG10E; };
-    var ln = function () { return result_1.value = Math.log; };
+    var ln = function () { return result_1.value = Math.log(result_1.value); };
     var powx = function () { return result_1.value = Math.pow(10, result_1.value); };
     var exp = function () { return result_1.value = Math.exp(result_1.value); };
     /* trigo functions*/
