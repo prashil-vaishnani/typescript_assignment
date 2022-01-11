@@ -1,0 +1,16 @@
+{
+
+    "compilerOptions": {
+
+    "lib": ["es6", "dom", "es2017"],
+    "module": "commonjs",
+    "target": "es2017",
+    "outDir": "typescript",
+    "declaration": true,
+    "sourceMap": true
+    
+    },
+  
+    
+
+}
