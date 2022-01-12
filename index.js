@@ -2,9 +2,7 @@ var body = null;
 if (typeof document !== 'undefined') { // will run in client's browser only
     body = document.getElementsByTagName("body")[0];
     var result_1 = document.getElementById("res");
-    var list_1 = document.getElementById("memory-list");
     var list1_1 = document.getElementById("history-list");
-    var memoryRegister_1 = [];
     var his_catch_1 = [];
     var ans_1;
     //take and display the numbers 0-9 and operators
@@ -23,7 +21,6 @@ if (typeof document !== 'undefined') { // will run in client's browser only
         }
         else {
             ch = result_1.value;
-            ch = String(ch);
             ch = ch.slice(-1);
             if (isNaN(parseInt(ch))) {
                 if (isNaN(parseInt(number))) {
@@ -50,11 +47,11 @@ if (typeof document !== 'undefined') { // will run in client's browser only
             var y = temp.substring(temp.indexOf("^") + 1);
             return result_1.value = Math.pow(x, y);
         }
-        var disp = result_1.value;
+        var disp = String(result_1.value);
         disp = String(disp);
         var dispnew = disp.slice(-1);
         var n_before;
-        if (isNaN(dispnew)) {
+        if (isNaN(parseFloat(dispnew))) {
             disp = disp.substring(0, disp.length - 1);
             n_before = disp;
         }
@@ -66,7 +63,7 @@ if (typeof document !== 'undefined') { // will run in client's browser only
         var n_after = result_1.value;
         var num = n_before + '=' + n_after;
         his_catch_1.push(num); //pushes the elements in array
-        list1_1.innerHTML = '';
+        //list1.innerHTML = '';
         his_catch_1.forEach(function (element) {
             list1_1.innerHTML += '<li>' + element + '</li>'; //prints element history block
         });
@@ -121,7 +118,7 @@ if (typeof document !== 'undefined') { // will run in client's browser only
     //function square
     var square = function () { return result_1.value = Math.pow(result_1.value, 2); };
     /* logarithmic functions*/
-    var log = function () { return result_1.value = Math.log10(parseFloat(result_1.value)); };
+    var log = function () { return result_1.value = Math.log10(result_1.value); };
     var ln = function () { return result_1.value = Math.log(result_1.value); };
     var powx = function () { return result_1.value = Math.pow(10, result_1.value); };
     var exp = function () { return result_1.value = Math.exp(result_1.value); };
@@ -133,8 +130,8 @@ if (typeof document !== 'undefined') { // will run in client's browser only
     var acos = function () { return result_1.value = Math.acos(result_1.value); };
     var atan = function () { return result_1.value = Math.atan(result_1.value); };
     /* maths basic functions*/
-    var e = function () { return result_1.value = Math.E * (parseFloat(result_1.value)); };
-    var pie = function () { return result_1.value = Math.PI * (parseFloat(result_1.value)); };
+    var e = function () { return result_1.value = Math.E * (result_1.value); };
+    var pie = function () { return result_1.value = Math.PI * (result_1.value); };
     var floor = function () { return result_1.value = Math.floor(result_1.value); };
     var ceil = function () { return result_1.value = Math.ceil(result_1.value); };
     var random = function () { return result_1.value = Math.random(); };
@@ -142,60 +139,45 @@ if (typeof document !== 'undefined') { // will run in client's browser only
     var reciprocal = function () { return result_1.value = 1 / result_1.value; };
     var xpow3 = function () { return result_1.value = Math.pow(result_1.value, 3); };
     var pm = function () { return result_1.value = -result_1.value; };
-    //function memory
-    var Memory = function () {
-        var div = document.getElementsByClassName('show').item(0);
-        if (div.style.display == 'block') {
-            div.style.display = 'none';
+    var ms_1 = [];
+    var index_1 = 0;
+    // function memory save
+    var memorysave = function () {
+        ms_1.push(parseInt(result_1.value));
+        result_1.value = "";
+    };
+    //function memory plus (M+)
+    var memoryplus = function () {
+        if (ms_1.length == 0) {
+            alert("Nothing is stored in memory");
         }
         else {
-            div.style.display = 'block';
+            var sum = ms_1.reduce(function (num1, num2) {
+                return num1 + num2;
+            }, 0);
+            return result_1.value = String(sum);
         }
-    };
-    // function memory save
-    var MemorySave = function () {
-        var num = result_1.value;
-        memoryRegister_1.push(num); //pushes the elements in array
-        list_1.innerHTML = '';
-        memoryRegister_1.forEach(function (element) {
-            list_1.innerHTML += '<li>' + element + '</li>'; //prints element in memory block
-        });
-    };
-    //function memory plus
-    var memoryplus = function () {
-        var num = result_1.value;
-        var lastvalue = list_1.lastChild; //.innerHTML; //storing last value to list
-        var ans = parseInt(lastvalue.toString()) + parseInt(num); //adding last value to memory
-        memoryRegister_1.pop(); //remove last elements
-        memoryRegister_1.push(ans); //insert new element
-        list_1.innerHTML = '';
-        memoryRegister_1.forEach(function (element) {
-            list_1.innerHTML += '<li>' + element + '</li>'; //prints element in memory block
-        });
     };
     //function memory minus
     var memoryminus = function () {
-        var num = result_1.value;
-        var lastvalue = list_1.lastChild; //.innerHTML; // takes last element of list and stores in lastvalue
-        var ans = parseInt(lastvalue) - parseInt(num); //substracts the last item in memory and the number
-        memoryRegister_1.pop(); //pops out the lastvalue in array
-        memoryRegister_1.push(ans); //pushes the elements in array
-        list_1.innerHTML = '';
-        memoryRegister_1.forEach(function (element) {
-            list_1.innerHTML += '<li>' + element + '</li>'; //prints element in memory block
-        });
+        if (ms_1.length == 0) {
+            alert("Nothing is stored in memory");
+        }
     };
-    //function memory recall
+    //function memory recall 
     var memoryrecall = function () {
-        result_1.value = list_1.lastChild; //.innerHTML; //prints last element in list on display
+        if (ms_1.length == 0) {
+            alert("Nothing is stored in memory");
+        }
+        else {
+            index_1 %= ms_1.length;
+            result_1.value = String(ms_1[index_1]);
+            index_1++;
+        }
     };
     //function memory clear
     var memoryclear = function () {
-        list_1.innerHTML = '';
-        memoryRegister_1.forEach(function (element) {
-            while (memoryRegister_1.length) {
-                memoryRegister_1.pop();
-            }
-        });
+        ms_1.splice(0, ms_1.length);
+        result_1.value = "";
     };
 }
