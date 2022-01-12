@@ -11,67 +11,60 @@ if (typeof document !== 'undefined') { // will run in client's browser only
     var sol = function (number) {
         var ch, cache;
         if (result_1.value === "") {
-            if (isNaN(number)) {
+            if (isNaN(parseInt(number))) {
                 if (number == "-" || number == "(") {
                     result_1.value += number;
+                    return result_1.value;
                 }
             }
             else {
-                result_1.value += number;
+                return result_1.value += number;
             }
         }
         else {
             ch = result_1.value;
             ch = String(ch);
             ch = ch.slice(-1);
-            if (isNaN(ch)) {
-                if (isNaN(number)) {
+            if (isNaN(parseInt(ch))) {
+                if (isNaN(parseInt(number))) {
                     cache = result_1.value;
                     cache = cache.substring(0, cache.length - 1);
-                    console.log("replace", cache);
                     result_1.value = cache;
                     result_1.value += number;
-                    console.log(cache);
+                    return result_1.value;
                 }
                 else {
-                    result_1.value += number;
+                    return result_1.value += number;
                 }
             }
             else {
-                result_1.value += number;
+                return result_1.value += number;
             }
         }
     };
     // ans 
     var Answer = function () {
-        //condition checks the value contains ^ if yes then it will perform x^y
         if (result_1.value.includes("^")) {
             var temp = result_1.value;
             var x = temp.split("^")[0];
             var y = temp.substring(temp.indexOf("^") + 1);
-            result_1.value = Math.pow(x, y);
+            return result_1.value = Math.pow(x, y);
         }
         var disp = result_1.value;
-        console.log("disp", disp);
         disp = String(disp);
         var dispnew = disp.slice(-1);
-        console.log("dispnew", dispnew);
         var n_before;
         if (isNaN(dispnew)) {
             disp = disp.substring(0, disp.length - 1);
             n_before = disp;
-            console.log("n_before", n_before);
         }
         else {
             n_before = result_1.value;
         }
-        n_before = document.getElementById("sm").innerHTML=n_before; // displaying operations
-        result_1.value=n_before.innerHTML ;
+        document.getElementById("sm").innerHTML = n_before; // displaying operations
         result_1.value = eval(n_before); // for calculating basic math operations
         var n_after = result_1.value;
         var num = n_before + '=' + n_after;
-        //if (Number.isNaN(n_after))
-        // return; // checks nan if yes then returned else will considered as number
         his_catch_1.push(num); //pushes the elements in array
         list1_1.innerHTML = '';
         his_catch_1.forEach(function (element) {
@@ -81,7 +74,7 @@ if (typeof document !== 'undefined') { // will run in client's browser only
     //clear function
     var clr = function () {
         document.getElementById("sm").innerHTML = "";
-        result_1.value = "";
+        return result_1.value = "";
     };
     //delete function
     var del = function () { return result_1.value = result_1.value.slice(0, -1); };
@@ -100,6 +93,7 @@ if (typeof document !== 'undefined') { // will run in client's browser only
             }
         }
         result_1.value = facto.toString();
+        return result_1.value;
     };
     //function radian to degree
     function btnDeg() {
@@ -109,23 +103,25 @@ if (typeof document !== 'undefined') { // will run in client's browser only
             var degr = (rad * 180) / Math.PI;
             result_1.value = degr.toString();
             document.getElementById("dtor").innerHTML = "RND";
+            return result_1.value;
         }
         else {
             var degr = parseFloat(result_1.value);
             var rad = (degr * Math.PI) / 180;
             result_1.value = rad.toString();
             document.getElementById("dtor").innerHTML = "DEG";
+            return result_1.value;
         }
     }
     //function F-E
     var f_e = function () {
         ans_1 = (parseFloat(result_1.value)).toExponential();
-        result_1.value = ans_1;
+        return result_1.value = ans_1;
     };
     //function square
     var square = function () { return result_1.value = Math.pow(result_1.value, 2); };
     /* logarithmic functions*/
-    var log = function () { return result_1.value = Math.LOG10E; };
+    var log = function () { return result_1.value = Math.log10(parseFloat(result_1.value)); };
     var ln = function () { return result_1.value = Math.log(result_1.value); };
     var powx = function () { return result_1.value = Math.pow(10, result_1.value); };
     var exp = function () { return result_1.value = Math.exp(result_1.value); };
@@ -137,6 +133,8 @@ if (typeof document !== 'undefined') { // will run in client's browser only
     var acos = function () { return result_1.value = Math.acos(result_1.value); };
     var atan = function () { return result_1.value = Math.atan(result_1.value); };
     /* maths basic functions*/
+    var e = function () { return result_1.value = Math.E * (parseFloat(result_1.value)); };
+    var pie = function () { return result_1.value = Math.PI * (parseFloat(result_1.value)); };
     var floor = function () { return result_1.value = Math.floor(result_1.value); };
     var ceil = function () { return result_1.value = Math.ceil(result_1.value); };
     var random = function () { return result_1.value = Math.random(); };
@@ -154,16 +152,6 @@ if (typeof document !== 'undefined') { // will run in client's browser only
             div.style.display = 'block';
         }
     };
-    void history;
-    (function () {
-        var div = document.getElementsByClassName('show1').item(0);
-        if (div.style.display == 'block') {
-            div.style.display = 'none';
-        }
-        else {
-            div.style.display = 'block';
-        }
-    });
     // function memory save
     var MemorySave = function () {
         var num = result_1.value;
@@ -176,8 +164,8 @@ if (typeof document !== 'undefined') { // will run in client's browser only
     //function memory plus
     var memoryplus = function () {
         var num = result_1.value;
-        var lastvalue = list_1.lastChild.innerHTML; //storing last value to list
-        var ans = parseInt(lastvalue) + parseInt(num); //adding last value to memory
+        var lastvalue = list_1.lastChild; //.innerHTML; //storing last value to list
+        var ans = parseInt(lastvalue.toString()) + parseInt(num); //adding last value to memory
         memoryRegister_1.pop(); //remove last elements
         memoryRegister_1.push(ans); //insert new element
         list_1.innerHTML = '';
@@ -188,9 +176,7 @@ if (typeof document !== 'undefined') { // will run in client's browser only
     //function memory minus
     var memoryminus = function () {
         var num = result_1.value;
-        //if (Number.isNaN(num))
-        //   return; // checks  nan if yes then returned else will considered as number
-        var lastvalue = list_1.lastChild.innerHTML; // takes last element of list and stores in lastvalue
+        var lastvalue = list_1.lastChild; //.innerHTML; // takes last element of list and stores in lastvalue
         var ans = parseInt(lastvalue) - parseInt(num); //substracts the last item in memory and the number
         memoryRegister_1.pop(); //pops out the lastvalue in array
         memoryRegister_1.push(ans); //pushes the elements in array
@@ -201,7 +187,7 @@ if (typeof document !== 'undefined') { // will run in client's browser only
     };
     //function memory recall
     var memoryrecall = function () {
-        result_1.value = list_1.lastChild.innerHTML; //prints last element in list on display
+        result_1.value = list_1.lastChild; //.innerHTML; //prints last element in list on display
     };
     //function memory clear
     var memoryclear = function () {
