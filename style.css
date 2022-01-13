@@ -1,0 +1,55 @@
+body {
+  display: flex;
+  align-items: center;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 1em;
+  border: none;
+}
+table tr td input {
+  width: 300px;
+  border: none;
+  text-align: right;
+  float: right;
+  font-weight: bold;
+  font-size: xx-large;
+}
+.dropdown-menu {
+  min-width: 60px;
+}
+
+table tr td {
+  border: hidden;
+}
+
+.bg-light {
+  background-color: transparent;
+}
+
+.equal {
+  background-color: rgb(86, 168, 235);
+}
+
+.mx {
+  display: block;
+  text-align: right;
+  margin: 0.5rem 0rem;
+}
+.togg {
+  position: relative;
+}
+.mcss {
+  width: 100%;
+  display: block;
+  position: absolute;
+  height: 55vh;
+  background: white;
+  bottom: 0;
+  z-index: 50;
+  display: none;
+}
+.mem {
+  float: left;
+  background-color: rgb(206, 206, 206);
+}
