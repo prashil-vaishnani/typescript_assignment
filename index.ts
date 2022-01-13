@@ -3,10 +3,17 @@ let body = null;
 if (typeof document !== 'undefined') {                          // will run in client's browser only
 
  body = document.getElementsByTagName("body")[0];
-let result:any = document.getElementById("res");
+
+let result:HTMLInputElement = <HTMLInputElement>document.getElementById("res");
 let list1:HTMLElement = document.getElementById("history-list");
 let his_catch:Array<string> = [];
 let ans:string;
+let num1:number;
+
+let strtonum=()=>
+{
+    return num1=parseInt(result.value);
+}
 //take and display the numbers 0-9 and operators
 let sol = (number:string) => {
     let ch:string,cache;
@@ -47,9 +54,9 @@ let sol = (number:string) => {
 let Answer = function () {
     if (result.value.includes("^")) {
         let temp = result.value;
-        let x:number = temp.split("^")[0];
-        let y:number = temp.substring(temp.indexOf("^") + 1);
-        return result.value = Math.pow(x, y);
+        let x:number =parseFloat(temp.split("^")[0]);
+        let y:number =parseFloat(temp.substring(temp.indexOf("^") + 1));
+        return result.value = Math.pow(x, y).toString();
         
     }
     let disp:string = String(result.value);
@@ -85,7 +92,7 @@ let clr = () =>
 let del = () => { return result.value = result.value.slice(0, -1);}
 
 //square root function
-let sqrt = () =>{ return result.value = Math.sqrt(result.value);}
+let sqrt = () =>{ return result.value = Math.sqrt(num1).toString();}
    
 //factorial function
 let  fact = () => {
@@ -133,34 +140,33 @@ let f_e = () => {
     return result.value = ans;
     
 }
+// log functions
+let e=()=>{strtonum(); return result.value=(Math.E*(num1)).toString();}
+let pie=() =>{strtonum(); return result.value=(Math.PI*(num1)).toString()}
+let log = () => { strtonum(); return result.value = Math.log10(num1).toString();}
+let ln = () => {strtonum(); return result.value = Math.log(num1).toString();}
+let square = function () {strtonum(); return result.value = (Math.pow(num1, 2)).toString(); };
+let powx = function () {strtonum(); return result.value = Math.pow(10, num1).toString(); };
+let exp = function () {strtonum(); return result.value = Math.exp(num1).toString(); };
 
-//function square
-let square = () =>{ return result.value = Math.pow(result.value , 2);}
+//trigo function
+let sin = function () {strtonum(); return result.value = Math.sin(num1).toString(); };
+let tan = function () {strtonum(); return result.value = Math.tan(num1).toString(); };
+let cos = function () {strtonum(); return result.value = Math.cos(num1).toString(); };
+let asin = function () { strtonum(); return result.value = Math.asin(num1).toString(); };
+let acos = function () {strtonum(); return result.value = Math.acos(num1).toString(); };
+let atan = function () {strtonum(); return result.value = Math.atan(num1).toString(); };
 
-/* logarithmic functions*/
-let log = () => { return result.value = Math.log10(result.value);}
-let ln = () => { return result.value = Math.log(result.value);}
-let powx = () => { return result.value = Math.pow(10 , result.value);}
-let exp = () => { return result.value = Math.exp(result.value);}
+// basic maths function
+let floor = function () {strtonum(); return result.value = Math.floor(num1).toString(); };
+let ceil = function () {strtonum(); return result.value = Math.ceil(num1).toString(); };
+let random = function () {strtonum(); return result.value = Math.random().toString(); };
+let abs = function () {strtonum(); return result.value = Math.abs(num1).toString(); };
+let reciprocal = function () {strtonum(); return result.value = (1 / num1).toString(); };
+let xpow3 = function () {strtonum(); return result.value = Math.pow(num1, 3).toString(); };
+let powof2x = function () {strtonum(); return result.value = Math.pow(2, num1).toString(); };
+let pm = function () {strtonum(); return result.value = (-num1).toString(); };
 
-/* trigo functions*/
-let sin = () =>{ return result.value = Math.sin(result.value);}
-let tan = () => { return result.value = Math.tan(result.value);}
-let cos = () => { return result.value = Math.cos(result.value);}
-let asin = () => { return result.value = Math.asin(result.value);}
-let acos = () => { return result.value = Math.acos(result.value);}
-let atan = () =>{ return result.value = Math.atan(result.value);}
-
-/* maths basic functions*/
-let e=()=>{return result.value=Math.E*(result.value)}
-let pie=() =>{return result.value=Math.PI*(result.value)}
-let floor = () =>{ return result.value = Math.floor(result.value);}
-let ceil = () =>{ return result.value = Math.ceil(result.value);}
-let random = () => { return result.value = Math.random();}
-let abs = () =>{ return result.value = Math.abs(result.value);}
-let reciprocal = () =>{ return result.value = 1/result.value;}
-let xpow3 = () => { return result.value = Math.pow(result.value , 3);}
-let pm =  () => { return result.value = -result.value;}
 
 
 let ms: Array<number> = [];

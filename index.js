@@ -5,6 +5,10 @@ if (typeof document !== 'undefined') { // will run in client's browser only
     var list1_1 = document.getElementById("history-list");
     var his_catch_1 = [];
     var ans_1;
+    var num1_1;
+    var strtonum_1 = function () {
+        return num1_1 = parseInt(result_1.value);
+    };
     //take and display the numbers 0-9 and operators
     var sol = function (number) {
         var ch, cache;
@@ -43,9 +47,9 @@ if (typeof document !== 'undefined') { // will run in client's browser only
     var Answer = function () {
         if (result_1.value.includes("^")) {
             var temp = result_1.value;
-            var x = temp.split("^")[0];
-            var y = temp.substring(temp.indexOf("^") + 1);
-            return result_1.value = Math.pow(x, y);
+            var x = parseFloat(temp.split("^")[0]);
+            var y = parseFloat(temp.substring(temp.indexOf("^") + 1));
+            return result_1.value = Math.pow(x, y).toString();
         }
         var disp = String(result_1.value);
         disp = String(disp);
@@ -76,7 +80,7 @@ if (typeof document !== 'undefined') { // will run in client's browser only
     //delete function
     var del = function () { return result_1.value = result_1.value.slice(0, -1); };
     //square root function
-    var sqrt = function () { return result_1.value = Math.sqrt(result_1.value); };
+    var sqrt = function () { return result_1.value = Math.sqrt(num1_1).toString(); };
     //factorial function
     var fact = function () {
         var n = parseInt(result_1.value);
@@ -115,30 +119,30 @@ if (typeof document !== 'undefined') { // will run in client's browser only
         ans_1 = (parseFloat(result_1.value)).toExponential();
         return result_1.value = ans_1;
     };
-    //function square
-    var square = function () { return result_1.value = Math.pow(result_1.value, 2); };
-    /* logarithmic functions*/
-    var log = function () { return result_1.value = Math.log10(result_1.value); };
-    var ln = function () { return result_1.value = Math.log(result_1.value); };
-    var powx = function () { return result_1.value = Math.pow(10, result_1.value); };
-    var exp = function () { return result_1.value = Math.exp(result_1.value); };
-    /* trigo functions*/
-    var sin = function () { return result_1.value = Math.sin(result_1.value); };
-    var tan = function () { return result_1.value = Math.tan(result_1.value); };
-    var cos = function () { return result_1.value = Math.cos(result_1.value); };
-    var asin = function () { return result_1.value = Math.asin(result_1.value); };
-    var acos = function () { return result_1.value = Math.acos(result_1.value); };
-    var atan = function () { return result_1.value = Math.atan(result_1.value); };
-    /* maths basic functions*/
-    var e = function () { return result_1.value = Math.E * (result_1.value); };
-    var pie = function () { return result_1.value = Math.PI * (result_1.value); };
-    var floor = function () { return result_1.value = Math.floor(result_1.value); };
-    var ceil = function () { return result_1.value = Math.ceil(result_1.value); };
-    var random = function () { return result_1.value = Math.random(); };
-    var abs = function () { return result_1.value = Math.abs(result_1.value); };
-    var reciprocal = function () { return result_1.value = 1 / result_1.value; };
-    var xpow3 = function () { return result_1.value = Math.pow(result_1.value, 3); };
-    var pm = function () { return result_1.value = -result_1.value; };
+    // log functions
+    var e = function () { strtonum_1(); return result_1.value = (Math.E * (num1_1)).toString(); };
+    var pie = function () { strtonum_1(); return result_1.value = (Math.PI * (num1_1)).toString(); };
+    var log = function () { strtonum_1(); return result_1.value = Math.log10(num1_1).toString(); };
+    var ln = function () { strtonum_1(); return result_1.value = Math.log(num1_1).toString(); };
+    var square = function () { strtonum_1(); return result_1.value = (Math.pow(num1_1, 2)).toString(); };
+    var powx = function () { strtonum_1(); return result_1.value = Math.pow(10, num1_1).toString(); };
+    var exp = function () { strtonum_1(); return result_1.value = Math.exp(num1_1).toString(); };
+    //trigo function
+    var sin = function () { strtonum_1(); return result_1.value = Math.sin(num1_1).toString(); };
+    var tan = function () { strtonum_1(); return result_1.value = Math.tan(num1_1).toString(); };
+    var cos = function () { strtonum_1(); return result_1.value = Math.cos(num1_1).toString(); };
+    var asin = function () { strtonum_1(); return result_1.value = Math.asin(num1_1).toString(); };
+    var acos = function () { strtonum_1(); return result_1.value = Math.acos(num1_1).toString(); };
+    var atan = function () { strtonum_1(); return result_1.value = Math.atan(num1_1).toString(); };
+    // basic maths function
+    var floor = function () { strtonum_1(); return result_1.value = Math.floor(num1_1).toString(); };
+    var ceil = function () { strtonum_1(); return result_1.value = Math.ceil(num1_1).toString(); };
+    var random = function () { strtonum_1(); return result_1.value = Math.random().toString(); };
+    var abs = function () { strtonum_1(); return result_1.value = Math.abs(num1_1).toString(); };
+    var reciprocal = function () { strtonum_1(); return result_1.value = (1 / num1_1).toString(); };
+    var xpow3 = function () { strtonum_1(); return result_1.value = Math.pow(num1_1, 3).toString(); };
+    var powof2x = function () { strtonum_1(); return result_1.value = Math.pow(2, num1_1).toString(); };
+    var pm = function () { strtonum_1(); return result_1.value = (-num1_1).toString(); };
     var ms_1 = [];
     var index_1 = 0;
     // function memory save
